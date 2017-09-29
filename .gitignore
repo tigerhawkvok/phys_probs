@@ -1,0 +1,98 @@
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+~$*
+
+# Folder config file
+Desktop.ini
+desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# =========================
+# Operating System Files
+# =========================
+
+# OSX
+# =========================
+
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon must ends with two \r.
+Icon
+
+# Thumbnails
+._*
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+# Temp Files from emacs
+\#*
+\#*\#
+.\#*
+*.*~
+
+errors/
+
+#Extra latex stuff
+*.C
+*.K
+*.M
+*.out
+*.aux
+
+bower_components/bootstrap/node_modules/
+node_modules/
+/keyrings/live/pubring.gpg~
+/keyrings/live/pubring.kbx~
+/keyrings/live/secring.gpg
+
+# Configs
+#admin/CONFIG.php
+#DB_CONFIG.PHP
+#CONFIG.PHP
+/DB_CONFIG.php
+/admin/CONFIG.php
+/helpers/js-dragdrop/uploaded/
+/admin/oauth/secrets.php
+/admin/oauth/credentials.json
+meta/GABON_Amphibian_Disease2.xlsx
+meta/test*
+meta/*.xlsx
+meta/*.xls
+.dropbox
+.dropbox*
+info.php
+aweb_list.txt
+grav/vendor/bin/*
+grav/vendor/erusev/*
+# Don't track user profile images
+users/profiles/*.png
+users/profiles/*.PNG
+users/profiles/*.jpg
+users/profiles/*.JPG
+users/profiles/*.jpeg
+users/profiles/*.JPEG
+users/profiles/*.bmp
+users/profiles/*.BMP
+users/profiles/*.gif
+users/profiles/*.GIF
+# Allow test sensitive queries in the directory to be synced and saved but not committed
+testQuery.sql
+*.bak
+aweb_list.txt
+npm-debug.log
+amphibiandisease-*error_log
+.php_cs.cache
+.vscode
