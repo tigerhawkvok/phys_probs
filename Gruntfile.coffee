@@ -21,7 +21,7 @@ module.exports = (grunt) ->
       bower:
         command: ["bower update"].join("&&")
       movesrc:
-        command: ["mv js/c.src.coffee js/maps/c.src.coffee","mv js/admin.src.coffee js/maps/admin.src.coffee", "mv js/project.src.coffee js/maps/project.src.coffee", "mv js/dashboard.src.coffee js/maps/dashboard.src.coffee","mv js/profile.src.coffee js/maps/profile.src.coffee","mv js/kml.src.coffee js/maps/kml.src.coffee","mv js/global-searach.src.coffee js/maps/global-search.src.coffee","mv js/global-search-worker.src.coffee js/maps/global-search-worker.src.coffee"].join("; ")
+        command: ["mv js/c.src.coffee js/maps/c.src.coffee"].join("; ")
     postcss:
       options:
         processors: [
