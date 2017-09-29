@@ -22,7 +22,7 @@ module.exports = (grunt) ->
       bower:
         command: ["bower update"].join("&&")
       movesrc:
-        command: ["mv js/c.src.coffee js/maps/c.src.coffee", "mv node_modules/prismjs/prism.js js/prism.js"].join("; ")
+        command: ["mv js/c.src.coffee js/maps/c.src.coffee", "cp node_modules/prismjs/prism.js js/prism.js"].join("; ")
     postcss:
       options:
         processors: [
