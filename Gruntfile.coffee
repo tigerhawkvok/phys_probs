@@ -7,6 +7,7 @@ module.exports = (grunt) ->
   # https://www.npmjs.com/package/grunt-contrib-coffee
   grunt.loadNpmTasks("grunt-contrib-coffee")
   grunt.loadNpmTasks("grunt-contrib-uglify")
+  grunt.loadNpmTasks("grunt-contrib-cssmin")
   grunt.loadNpmTasks('grunt-postcss')
   grunt.loadNpmTasks('grunt-contrib-less')
   # https://www.npmjs.com/package/grunt-phplint
