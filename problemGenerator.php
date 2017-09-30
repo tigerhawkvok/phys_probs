@@ -42,7 +42,7 @@ if (!function_exists('elapsed')) {
         }
         return 1000 * (microtime_float() - (float) $start_time);
     }
-                                 }
+}
 
 if (isset($_REQUEST["generator_problem"])) {
     /***
@@ -59,6 +59,12 @@ if (isset($_REQUEST["generator_problem"])) {
      *   configuration. Array of objects configurating each of the
      *   other parameters for multiple-problem-type generation.
      ***/
+    function str_replace_first($from, $to, $subject)
+    {
+        $from = '/'.preg_quote($from, '/').'/';
+
+        return preg_replace($from, $to, $subject, 1);
+    }
     $defaultConfiguration = array(
         "n" => 1,
         "type" => null,
@@ -76,14 +82,44 @@ if (isset($_REQUEST["generator_problem"])) {
         );
         $configuration = array($problem);
     }
-    $problemContents = "";
-    foreach ($configuration as $problem) {
+    $problemContents = array();
+    foreach ($configuration as $problemSettings) {
         # Check against defaults robustly
-        # Sanitize inputs
-        # Build latex contents for this problem
+        # Iterate over the per-type copies
+        $n = $problemSettings["n"];
+        unset($problemSettings["n"]);
+        $i = 0;
+        while ($i < $n) {
+            $result = $db->getQueryResults($problem, "tex");
+            # Replace any random values in the entry
+            # JSON encapsed by RANDSTART and RANDEND
+            preg_match_all('/RANDSTART({.*?})RANDEND/im', $result, $matches, PREG_SET_ORDER);
+            for ($matchi = 0; $matchi < count($matches); $matchi++) {
+                for ($backrefi = 0; $backrefi < count($matches[$matchi]); $backrefi++) {
+                    $match = $matches[$matchi][$backrefi];
+                    $matchConfig = json_decode($match, true);
+                    $places = $matchConfig["decimals"];
+                    $min = $matchConfig["min"] * pow(10, $places);
+                    $max = $matchConfig["max"] * pow(10, $places);
+                    $insertion = rand($min, $max) / pow(10, $places);
+                    # Replace it with the newly generated number
+                    $result = str_replace_first($match, $insertion, $result);
+                }
+            }
+            # Now we have a problem with the random values replaced
+            $problemContents[] = $result;
+            $i++;
+        }
     }
-    # Finalize latex file
+    shuffle($problemContents);
+    # Finalize latex file:
+    # throw the contents into an itemize
+    # Wrap in the latex heders and such
     # Output with right MIME type
+    header('Cache-Control: no-cache, must-revalidate');
+    header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
+    header("Content-type: application/x-tex");
+    print $finalLatex;
     exit();
 }
 
@@ -93,7 +129,7 @@ if (isset($_REQUEST["generator_problem"])) {
   <head>
     <title>
       Physics Problem Generator
-    </title>    
+    </title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="css/main.min.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
@@ -101,6 +137,6 @@ if (isset($_REQUEST["generator_problem"])) {
     <script src="js/c.min.js" type="text/javascript"></script>
   </head>
   <body class="container-fluid">
-    
+      
   </body>
 </html>
