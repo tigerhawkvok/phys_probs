@@ -144,6 +144,11 @@ if (isset($_REQUEST["generator_problem"])) {
       <div class="form-group">
         <!-- Stuff and things -->
       </div>
+      <button class="btn btn-default" id="add-problem">Add problem type to set</button>
+      <div id="problem-list">
+        
+      </div>
+      
       <button class="btn btn-primary" id="do-generate">Generate</button>
     </div>
   </body>
