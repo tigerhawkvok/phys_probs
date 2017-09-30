@@ -3,7 +3,7 @@ Physics Problem Generator
 
 ## Getting started as a dev
 
-1. Install [yarn](https://yarnpkg.com/en/docs/install#linux-tab):
+1. Install [yarn](https://yarnpkg.com/en/docs/install#linux-tab) to compile the LESS and CoffeeScript locally:
 
   ```sh
   curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
@@ -18,4 +18,7 @@ Physics Problem Generator
   ```sh
   yarn && grunt
   ```
+
+  This will set up your developer dependencies and do your first local build. For future runs, you'll only need to run `grunt` unless you update your dependencies.
+
 4. Set up your `DB_CONFIG.php` file.
