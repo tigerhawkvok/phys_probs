@@ -137,6 +137,14 @@ if (isset($_REQUEST["generator_problem"])) {
     <script src="js/c.min.js" type="text/javascript"></script>
   </head>
   <body class="container-fluid">
-      
+    <h1 class="col-xs-12">
+      Physics Problem Generator
+    </h1>
+    <div class="form col-xs-12 col-md-8 center-block col-offset-md-2">
+      <div class="form-group">
+        <!-- Stuff and things -->
+      </div>
+      <button class="btn btn-primary" id="do-generate">Generate</button>
+    </div>
   </body>
 </html>
